@@ -70,6 +70,7 @@ p{
   transform: translateX(-50%);
   white-space: nowrap;
   font-size: 0.7rem;
+  opacity: 0.2;
 }
 
 #titleCard img{
@@ -99,6 +100,10 @@ section{
   padding-block: 2rem;
 }
 
+.card:last-of-type {
+  margin-bottom: 0;
+}
+
 .card .text{
   flex: 1 1 0;
   min-width: 0;
@@ -125,7 +130,6 @@ section{
   border-radius: 5%;
 }
 
-/* sizing goes on the flex item: either the bare img or the wrapping link */
 .card > .exampleImg,
 .card > a {
   flex: 0 1 45%;
@@ -133,11 +137,21 @@ section{
   max-width: 500px;
 }
 
-/* inside the link, the image just fills it */
 .card > a > .exampleImg {
   width: 100%;
   max-width: none;
   flex: none;
+}
+
+.card > a {
+  padding: 2px;          
+  border-radius: 5%;
+  background: linear-gradient(135deg, var(--accent-stroke-bg), var(--accent-stroke-text));
+}
+
+.card > a > .exampleImg {
+  display: block;
+  border-radius: inherit;
 }
 
 a{
@@ -153,6 +167,108 @@ a:hover{
   opacity: 0;
 }
 
+#render {
+  flex: 0 0 auto;
+  width: 320px;
+  height: 320px;
+  max-width: 100%;
+  border-radius: 5%;
+  overflow: hidden;
+}
+
+#render canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.skills {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  counter-reset: skill;
+}
+
+.skills li {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  counter-increment: skill;
+
+  background:
+    linear-gradient(var(--main-bg), var(--main-bg)) padding-box,
+    linear-gradient(135deg, var(--accent-stroke-bg), var(--accent-stroke-text)) border-box;
+
+  opacity: 1;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.skills li::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    180px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(180, 73, 214, 0.25),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.skills li::after {
+  content: "0" counter(skill);
+  position: absolute;
+  top: 0.6rem;
+  right: 0.9rem;
+  font: 0.75rem/1 "VT323", monospace;
+  letter-spacing: 0.1em;
+  color: var(--accent-stroke-text);
+  opacity: 0.6;
+}
+
+.skills li:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 0 1px var(--accent-stroke-bg),
+    0 8px 28px -6px var(--accent-shadow);
+}
+
+.skills li:hover::before { opacity: 1; }
+
+.skills li p {
+  position: relative;
+  background: transparent;
+}
+
+.skills .li-title {
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  text-shadow: var(--accent-shadow-text) 2px 2px 0;
+}
+
+.skills .li-body {
+  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+  line-height: 1.4;
+  opacity: 0.85;
+}
+
+@media (max-width: 500px) {
+  .skills { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills li { animation: none; opacity: 1; transform: none; }
+}
 
 @media (max-width: 800px){
   .card{
