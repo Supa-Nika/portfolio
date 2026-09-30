@@ -125,6 +125,30 @@ section{
   border-radius: 5%;
 }
 
+/* sizing goes on the flex item: either the bare img or the wrapping link */
+.card > .exampleImg,
+.card > a {
+  flex: 0 1 45%;
+  width: 45%;
+  max-width: 500px;
+}
+
+/* inside the link, the image just fills it */
+.card > a > .exampleImg {
+  width: 100%;
+  max-width: none;
+  flex: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: underline;
+  text-decoration-color: var(--main-text);
+}
+
 .transparency{
   opacity: 0;
 }
@@ -156,6 +180,13 @@ section{
 
   #title{
     text-align: center;
+  }
+
+  .card > .exampleImg,
+  .card > a {
+    width: 100%;
+    max-width: 420px;
+    flex: 0 0 auto;
   }
 }
 
