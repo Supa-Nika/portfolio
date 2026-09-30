@@ -35,33 +35,41 @@ p{
   -webkit-text-stroke-color: white;
 }
 
-
 #titleHolder{
   display: flex;
-  align-items: center;                 /* was baseline: underscore no longer follows the font */
-  height: calc(var(--title-size) * 2); /* fixed row height */
+  align-items: center;               
+  height: calc(var(--title-size) * 2);
 }
 
 #title{
-  /* --font-scale is set from JS per font */
   font-size: calc(var(--title-size) * var(--font-scale, 1));
-  width: calc(var(--title-size) * 9);  /* fixed box: right edge never moves */
+  width: calc(var(--title-size) * 9);  
   display: flex;
-  justify-content: flex-end;           /* anchors text to the underscore; overflow goes left */
+  justify-content: flex-end;         
   white-space: nowrap;
   line-height: 1;
   text-align: right;
 }
 
 #underscore{
-  font-size: var(--title-size);        /* independent of the cycling font */
+  font-size: var(--title-size);   
   line-height: 1;
-  margin-left: 0.15em;                 /* distance from the text */
+  margin-left: 0.15em;    
 }
 
 #titleCard{
+  position: relative;
   gap: var(--gap);
   padding: 1rem;
+}
+
+.ps{
+  position: absolute;
+  bottom: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 0.7rem;
 }
 
 #titleCard img{
