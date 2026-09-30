@@ -1,0 +1,159 @@
+:root{
+  --main-bg: #06030c;
+  --main-text: #b2acec;
+  --accent-stroke-bg: #8749D7;
+  --accent-shadow: #B449D6;
+  --accent-shadow-text: #B449D6;
+  --accent-stroke-text: #D649BF;
+
+  --gap: clamp(1rem, 4vw, 4rem);
+  --card-margin: clamp(1rem, 6vw, 6rem);
+  --avatar: clamp(110px, 18vw, 184px);
+
+  --title-size: clamp(1.75rem, 6vw, 3rem);
+}
+
+*{
+  box-sizing: border-box;
+  background-color: var(--main-bg);
+  color: var(--main-text);
+}
+
+html{
+  font-size: clamp(14px, 0.9rem + 0.4vw, 20px);
+}
+
+body{
+  margin: 0;
+  overflow-x: hidden;
+}
+
+p{
+  margin: 0;
+  text-shadow: var(--accent-shadow-text) 1px 1px 0;
+  -webkit-text-stroke-width: 0.2px;
+  -webkit-text-stroke-color: white;
+}
+
+
+#titleHolder{
+  display: flex;
+  align-items: center;                 /* was baseline: underscore no longer follows the font */
+  height: calc(var(--title-size) * 2); /* fixed row height */
+}
+
+#title{
+  /* --font-scale is set from JS per font */
+  font-size: calc(var(--title-size) * var(--font-scale, 1));
+  width: calc(var(--title-size) * 9);  /* fixed box: right edge never moves */
+  display: flex;
+  justify-content: flex-end;           /* anchors text to the underscore; overflow goes left */
+  white-space: nowrap;
+  line-height: 1;
+  text-align: right;
+}
+
+#underscore{
+  font-size: var(--title-size);        /* independent of the cycling font */
+  line-height: 1;
+  margin-left: 0.15em;                 /* distance from the text */
+}
+
+#titleCard{
+  gap: var(--gap);
+  padding: 1rem;
+}
+
+#titleCard img{
+  height: var(--avatar);
+  width: var(--avatar);
+  border-radius: 50%;
+  transition: all 1s;
+}
+
+#titleCard img:hover{
+  border-radius: 5%;
+}
+
+section{
+  min-height: 100vh;
+  min-height: 100svh; 
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.card{
+  justify-content: space-between;
+  gap: var(--gap);
+  margin: var(--card-margin);
+  min-height: 0; 
+  padding-block: 2rem;
+}
+
+.card .text{
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.card .title{
+  font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+  margin-bottom: 0.75em;
+}
+
+.desc{
+  white-space: pre-wrap;
+  font-size: clamp(0.95rem, 1.6vw, 1.25rem);
+  line-height: 1.5;
+}
+
+.exampleImg{
+  flex: 0 1 45%;
+  width: 45%;
+  max-width: 500px;
+  max-height: 60vh;
+  height: auto;
+  object-fit: cover;
+  border-radius: 5%;
+}
+
+.transparency{
+  opacity: 0;
+}
+
+
+@media (max-width: 800px){
+  .card{
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    min-height: 100svh;
+  }
+
+  .exampleImg{
+    width: 100%;
+    max-width: 420px;
+    flex: 0 0 auto;
+  }
+
+  #titleCard{
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #titleHolder{
+    justify-content: center;
+    min-height: 0;
+  }
+
+  #title{
+    text-align: center;
+  }
+}
+
+@media (min-width: 1600px){
+  .card{
+    max-width: 1400px;
+    margin-inline: auto;
+  }
+}
