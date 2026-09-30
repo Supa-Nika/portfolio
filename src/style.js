@@ -188,3 +188,15 @@ Composite.add(engine.world, mouseConstraint);
 
 // keeps the mouse in sync with the renderer (needed if you ever scale the canvas)
 render.mouse = mouse
+
+const inPhysLand = window !== window.parent;
+const physButton = document.querySelector("#physButton");
+
+physButton.addEventListener('click', () => {
+  if(!inPhysLand){
+    window.parent.location='./';
+  }
+  if(inPhysLand){
+    window.parent.location='./portfolio.html';
+  }
+});

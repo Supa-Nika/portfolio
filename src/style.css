@@ -270,6 +270,53 @@ a:hover{
   .skills li { animation: none; opacity: 1; transform: none; }
 }
 
+button {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  padding: 0.3rem 0.7rem;
+  border: 0;
+  border-radius: 10px;
+  font-family: "VT323", monospace;;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: #fff;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, var(--accent-stroke-bg), var(--accent-stroke-text));
+  box-shadow:
+    0 4px 14px -4px var(--accent-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.12);
+  box-shadow:
+    0 8px 22px -4px var(--accent-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+button:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 2px 8px -4px var(--accent-shadow);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--accent-stroke-text);
+  outline-offset: 3px;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  filter: grayscale(0.4);
+}
+
 @media (max-width: 800px){
   .card{
     flex-direction: column;
