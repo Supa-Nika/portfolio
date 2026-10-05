@@ -18,23 +18,22 @@ async function init() {
     const mousePos = Controls.getMouseWorldPosition(Scene.camera);
     const r = THREE.MathUtils.randFloat(1, 5);
     const ball = await Scene.createBall(mousePos.x, 5, mousePos.z, r);
-    // Scene.setCameraFollowTarget(ball);
   });  
 
   const ball = await Scene.createBall(0, 5, 0, 3);
   const object = await Scene.createModel(5, 5, 5, 3, 'car');
 
-  // Scene.setCameraFollowTarget(object);
   Scene.createJoint(ball, object, 10, 100, 10);
+
+  const aspectRatio = window.innerWidth / window.innerHeight;
+  const pageHeight = 54;
+  const pageWidth = pageHeight * aspectRatio;
 
   const page = await Scene.createHTML(
     0, 25, 10, 10,
-    import.meta.env.BASE_URL + 'portfolio.html', { width: 96, height: 54 }
+    import.meta.env.BASE_URL + 'portfolio.html', 
+    { width: pageWidth, height: pageHeight }
   );
-
-  // Scene.anchor(page);
-
-  // Scene.anchor( object);
 
   const point1 = await Scene.createBall(-10, 70, 0, 3);
   const point2 = await Scene.createBall(0, 70, 10, 3);
@@ -43,8 +42,8 @@ async function init() {
   Scene.anchor(point1);
   Scene.anchor(point3);
 
-  Scene.createJoint(point1, page, 1, 50000, 1, { anchorB: { x: -96/2, y: 54/2, z: 0 }});
-  Scene.createJoint(point3, page, 1, 50000, 1, { anchorB: { x: 96/2, y: 54/2, z: 0 }});
+  Scene.createJoint(point1, page, 1, 50000, 1, { anchorB: { x: -pageWidth / 2, y: pageHeight / 2, z: 0 }});
+  Scene.createJoint(point3, page, 1, 50000, 1, { anchorB: { x: pageWidth / 2, y: pageHeight / 2, z: 0 }});
 
   const elements = [];
 
@@ -58,23 +57,13 @@ async function init() {
 
   setTimeout(() => {
     setInterval(() => {
-      const el1 = elements.shift()
-      Scene.remove(el1);
+      const el1 = elements.shift();
+      if (el1) Scene.remove(el1);
       
-      const el2 = elements.shift()
-      Scene.remove(el2);
+      const el2 = elements.shift();
+      if (el2) Scene.remove(el2);
     }, 100);
   }, 10000);
-
-  // Scene.setCameraFollowTarget(point2);
-
-  // for (let index = 0; index < 10000; index++) {
-  //   const ball = await Scene.createBall(Math.random(), 5, Math.random());
-  //   // Scene.setCameraFollowTarget(ball);
-  // }
-
-  
-  // const page2 = await Scene.createHTML(0, 10, 10, 5, 'slopthrowsmainidkWhy.html', { width: 200, height: 50 });
 }
 
 init();
