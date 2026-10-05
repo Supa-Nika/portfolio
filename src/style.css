@@ -334,15 +334,21 @@ button:disabled {
   #titleCard{
     flex-direction: column;
     justify-content: center;
+    align-items: center; 
   }
 
   #titleHolder{
     justify-content: center;
+    width: 100%;
+    height: auto;
     min-height: 0;
   }
 
   #title{
+    width: auto;
+    justify-content: center;
     text-align: center;
+    white-space: normal;
   }
 
   .card > .exampleImg,
@@ -350,12 +356,5 @@ button:disabled {
     width: 100%;
     max-width: 420px;
     flex: 0 0 auto;
-  }
-}
-
-@media (min-width: 1600px){
-  .card{
-    max-width: 1400px;
-    margin-inline: auto;
   }
 }
